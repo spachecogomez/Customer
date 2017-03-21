@@ -7,9 +7,13 @@ package co.edu.javeriana.aes.pica.controllers;
 
 import co.edu.javeriana.aes.pica.model.Customer;
 import co.edu.javeriana.aes.pica.model.CustomerWrapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,8 +26,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class CustomerController {
     
-    @RequestMapping(value = "/customer" , method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody ResponseEntity<CustomerWrapper> getCustomer(){
+    private Logger log = LoggerFactory.getLogger(CustomerController.class);
+    
+    @RequestMapping(value = "/customer/{id}" , method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody ResponseEntity<CustomerWrapper> getCustomer(@PathVariable Integer id){
+        log.info(String.format("The received id was %d",id));
         CustomerWrapper wrapper = new CustomerWrapper();
         Customer cust = new Customer();
         cust.setCustomerId(1);
