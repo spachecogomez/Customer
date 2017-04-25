@@ -49,7 +49,7 @@ public class CustomerController {
     @RequestMapping(value = "/customer" , method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody ResponseEntity<CustomerWrapper> createCustomer(@RequestBody Customer c){
         CustomerWrapper wrapper = new CustomerWrapper();
-        c.setCustomerFirstName(c.getCustomerFirstName()+"Created");
+        c.setCustomerFirstName(c.getCustomerFirstName()+" Created");
         wrapper.setCustomer(c);
         return new ResponseEntity<>(wrapper,HttpStatus.OK);
     }
